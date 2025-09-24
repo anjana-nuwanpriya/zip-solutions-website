@@ -585,10 +585,13 @@ body.mobile-menu-open {
     }
 }
 
-/* Pause animation on hover */
-.worked-with:hover .logos-track {
-    animation-play-state: paused;
+/* Pause on hover only for desktop screens */
+@media (min-width: 768px) {
+  .worked-with:hover .logos-track {
+      animation-play-state: paused;
+  }
 }
+
 
 /* Desktop - Extra large logos */
 @media (min-width: 1200px) {
@@ -3218,24 +3221,22 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
         
 
 
-   <!-- Glassy Email Subscription Bar -->
-            <div class="email-container">
-                <form class="email-form" onsubmit="handleSubscribe(event)">
-                    <input 
-                        type="email" 
-                        class="email-input" 
-                        placeholder="Enter your email address"
-                        required
-                        id="emailInput"
-                    >
-                    <button type="submit" class="subscribe-btn">
-                        Subscribe
-                    </button>
-                </form>
-                <!-- <p class="email-description">
-                    Stay ahead of the curve. Unsubscribe anytime.
-                </p> -->
-            </div>
+<!-- Glassy Message Form -->
+<div class="email-container">
+    <form class="email-form" onsubmit="handleSend(event)">
+        <input 
+            type="text" 
+            class="email-input" 
+            placeholder="Enter your message"
+            required
+            id="messageInput"
+        >
+        <button type="submit" class="subscribe-btn">
+            Send
+        </button>
+    </form>
+</div>
+
 
 <div class="stars-container" id="starsContainer"></div>
 
@@ -4247,13 +4248,7 @@ mobileMenu.querySelectorAll('a').forEach(link => {
 
 
 
-
-
-
-
-
-
-
+   
 
 
 
@@ -4263,5 +4258,27 @@ mobileMenu.querySelectorAll('a').forEach(link => {
 
         
         </script>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+    (function() {
+        emailjs.init("BD07EXf9oP0ZfdORZ"); // replace with your EmailJS key
+    })();
+
+    function handleSend(event) {
+        event.preventDefault();
+        const message = document.getElementById("messageInput").value;
+
+        emailjs.send("service_fksadcm", "template_d9h57gq", {
+            message: message
+        }).then(function(response) {
+            alert("Message sent successfully!");
+        }, function(error) {
+            alert("Failed to send. Please try again.");
+        });
+    }
+</script>
+
 </body>
-</html>
+</html> 
+ 
