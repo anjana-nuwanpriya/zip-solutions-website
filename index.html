@@ -27,6 +27,9 @@
             margin: 0 auto;
             padding: 0 20px;
         }
+html {
+  scroll-behavior: smooth;
+}
 
       /* Navigation Bar */
 .navbar {
@@ -2121,6 +2124,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     height: 30px;
     margin-left: 4px;
     flex: 1;
+    width: 215px;
   }
 
   .subscribe-btn {
@@ -2128,6 +2132,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     padding: 0.4rem 0.8rem;
     height: 30px;
     white-space: nowrap;
+    flex-shrink: 0;    /* prevent button from shrinking */
   }
 }
 
@@ -3052,12 +3057,21 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
 <nav class="navbar">
   <div class="navbar-content">
     <!-- Logo -->
-    <img src="logo (2).png" alt="Logo" class="navbar-logo" />
+    <a href="#hero">
+  <img src="logo (2).png" alt="Logo" class="navbar-logo" />
+</a>
+
 
     <!-- Menu -->
     <div class="navbar-menu">
       <a href="#projects">Projects</a>
-      <a href="#contact" class="cta">Book a call</a>
+      <a href="https://calendly.com/tharushanuwansara61/30min?primary_color=fdc531&month=2025-09" 
+   class="cta" 
+   target="_blank" 
+   rel="noopener noreferrer">
+   Book a call
+</a>
+
     </div>
 
     <!-- Hamburger -->
@@ -3072,15 +3086,16 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
 <!-- Mobile Menu -->
 <div class="mobile-menu">
   <a href="#hero">Home</a>
-  <a href="#worked-with2">Clients</a>
   <a href="#experience">Expertise</a>
   <a href="#projects">Projects</a>
-  <a href="#contact" class="cta">Book a call</a>
+ <a href="https://calendly.com/tharushanuwansara61/30min?primary_color=fdc531&month=2025-09" 
+   class="cta" 
+   target="_blank" 
+   rel="noopener noreferrer">
+   Book a call
+</a>
+
 </div>
-
-
-
-
 
 
 
@@ -4081,63 +4096,62 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
 
 
 
-const hamburger = document.querySelector('.hamburger');
-const mobileMenu = document.querySelector('.mobile-menu');
-const body = document.body;
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const hamburger = document.querySelector('.hamburger');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  const mobileLinks = document.querySelectorAll('.mobile-menu a');
+
+  // Toggle menu
+  hamburger.addEventListener('click', () => {
     mobileMenu.classList.toggle('active');
-    body.classList.toggle('mobile-menu-open');
-});
+  });
 
-// Close menu when clicking on a link
-mobileMenu.querySelectorAll('a').forEach(link => {
+  // Close menu on link click
+  mobileLinks.forEach(link => {
     link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        body.classList.remove('mobile-menu-open');
+      mobileMenu.classList.remove('active'); // closes menu
     });
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  });
 
 
 
