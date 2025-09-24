@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Header</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+
+        .video-header {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .stars-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate, moveStars 20s linear infinite;
+            transition: transform 0.3s ease;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes moveStars {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100px); }
+        }
+
+        .star.hover {
+            transform: scale(1.2);
+        }
+
+        .header-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 3;
+        }
+
+        .header-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .header-content p {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        .content-section {
+            padding: 4rem 2rem;
+            background: #f4f4f4;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content-section h2 {
+            font-size: 2.5rem;
+            color: #333;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2.5rem;
+            }
+            .header-content p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-header">
+        <div class="video-background">
+            <video autoplay muted loop>
+                <source src="background video 5(2).mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="stars-layer"></div>
+        <div class="header-content">
+            <h1>Your Title Here</h1>
+            <p>Your subtitle or description</p>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Your Content Goes Here</h2>
+    </div>
+
+    <script>
+        // Create transparent stars
+        function createStars() {
+            const starsLayer = document.querySelector('.stars-layer');
+            const numStars = 75;
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random size for variety
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                
+                // Random position (only Y axis, X will be handled by animation)
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Random animation delay for both twinkling and movement
+                const delay = Math.random() * 20; // 0 to 20 seconds delay
+                star.style.animationDelay = `${Math.random() * 2}s, ${delay}s`;
+                
+                // Random brightness control
+                const brightness = 0.2 + Math.random() * 0.4;
+                star.style.background = `rgba(255, 255, 255, ${brightness})`;
+                
+                starsLayer.appendChild(star);
+            }
+        }
+
+        // Mouse interaction with stars
+        let stars = [];
+
+        document.addEventListener('mousemove', (e) => {
+            stars.forEach(star => {
+                const rect = star.getBoundingClientRect();
+                const starX = rect.left + rect.width / 2;
+                const starY = rect.top + rect.height / 2;
+                
+                const distance = Math.sqrt(
+                    Math.pow(e.clientX - starX, 2) + Math.pow(e.clientY - starY, 2)
+                );
+                
+                if (distance < 80) {
+                    star.classList.add('hover');
+                    
+                    // Move star away from cursor
+                    const moveX = (starX - e.clientX) * 0.5;
+                    const moveY = (starY - e.clientY) * 0.5;
+                    star.style.transform += ` translate(${moveX}px, ${moveY}px)`;
+                } else {
+                    star.classList.remove('hover');
+                }
+            });
+        });
+
+        // Initialize stars when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            
+            // Get reference to all stars after creation
+            setTimeout(() => {
+                stars = Array.from(document.querySelectorAll('.star'));
+            }, 100);
+        });
+    </script>
+</body>
+</html>
