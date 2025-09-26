@@ -232,6 +232,14 @@ html {
     z-index: 1;
 }
 
+/* Mobile video optimization */
+@media (max-width: 768px) {
+    .hero-video {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
 /* Section Styles */
 .section {
     min-height: auto;
@@ -493,48 +501,7 @@ body.mobile-menu-open {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Worked With Section - Extra Large Logos, Compact Height */
+/* Worked With Section - Optimized for mobile */
 .worked-with {
     overflow: hidden;
     position: relative;
@@ -548,10 +515,20 @@ body.mobile-menu-open {
 .logos-track {
     display: flex;
     align-items: center;
-    animation: scrollLogosRight 45s linear infinite;
     width: fit-content;
     margin-top: -10px;
     margin-bottom: -50px;
+    /* Optimize animation for mobile */
+    animation: scrollLogosRight 45s linear infinite;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* Reduce animation complexity on mobile */
+@media (max-width: 768px) {
+    .logos-track {
+        animation-duration: 35s;
+    }
 }
 
 .client-logo {
@@ -564,8 +541,16 @@ body.mobile-menu-open {
     transition: transform 0.3s ease;
 }
 
-.client-logo:hover {
-    transform: scale(1.15);
+/* Disable hover effects on mobile */
+@media (min-width: 769px) {
+    .client-logo:hover {
+        transform: scale(1.15);
+    }
+    
+    .client-logo:hover img {
+        filter: grayscale(0%);
+        opacity: 1;
+    }
 }
 
 .client-logo img {
@@ -575,11 +560,6 @@ body.mobile-menu-open {
     transition: all 0.3s ease;
     filter: grayscale(20%);
     opacity: 0.9;
-}
-
-.client-logo:hover img {
-    filter: grayscale(0%);
-    opacity: 1;
 }
 
 /* Animation for right to left scrolling */
@@ -598,7 +578,6 @@ body.mobile-menu-open {
       animation-play-state: paused;
   }
 }
-
 
 /* Desktop - Extra large logos */
 @media (min-width: 1200px) {
@@ -700,10 +679,6 @@ body.mobile-menu-open {
     .logos-track {
         animation-duration: 30s;
     }
-
-    .client-logo:hover {
-        transform: scale(1.05);
-    }
 }
 
 /* Very small screens */
@@ -726,12 +701,7 @@ body.mobile-menu-open {
     .logos-track {
         animation-duration: 25s;
     }
-    
-    .client-logo:hover {
-        transform: none;
-    }
 }
-
 
 /* Keep logos full color (no overlay) */
 .client-logo img {
@@ -743,24 +713,6 @@ body.mobile-menu-open {
     filter: none !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* optional subtle hover */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Expertise Section */
 .expertise-section {
@@ -862,8 +814,11 @@ body.mobile-menu-open {
     min-height: 100%; /* Takes full height of container (500px = 2x ratio) */
 }
 
-.expertise-card:hover {
-    transform: translateY(-5px);
+/* Disable hover effects on mobile for better performance */
+@media (min-width: 769px) {
+    .expertise-card:hover {
+        transform: translateY(-5px);
+    }
 }
 
 .expertise-card::before {
@@ -910,7 +865,6 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
   word-wrap: break-word; /* avoid overflow issues */
 }
 
-
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .card-title {
@@ -935,30 +889,6 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     text-align: justify;    /* justify for better readability */
   }
 }
-
-
-/* TILE SIZE CUSTOMIZATION: Uncomment and modify these if you want different sized tiles */
-/*
-.education-card {
-    flex: 2; // Makes this tile twice as wide as others
-    background-image: linear-gradient(135deg, rgba(52, 152, 219, 0.8), rgba(155, 89, 182, 0.8));
-}
-
-.government-card {
-    flex: 1; // Normal size tile
-    background-image: linear-gradient(135deg, rgba(46, 125, 50, 0.8), rgba(67, 160, 71, 0.8));
-}
-
-.retail-card {
-    flex: 1.5; // 1.5x wider than normal
-    background-image: linear-gradient(135deg, rgba(255, 152, 0, 0.8), rgba(255, 193, 7, 0.8));
-}
-
-.fitness-card {
-    flex: 0.8; // Smaller than normal
-    background-image: linear-gradient(135deg, rgba(76, 175, 80, 0.8), rgba(139, 195, 74, 0.8));
-}
-*/
 
 /* MOBILE RESPONSIVENESS - Full Device Support */
 
@@ -1233,46 +1163,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Video */
+/* Mobile-optimized video handling */
 .card-video {
   position: absolute;
   top: 0;
@@ -1284,13 +1175,14 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
   opacity: 0.7; /* dim video for readability */
 }
 
-/* Overlay
-.card-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2));
-  z-index: 1;
-} */
+/* Mobile video optimization */
+@media (max-width: 768px) {
+    .card-video {
+        /* Reduce video quality on mobile for better performance */
+        transform: scale(1.05);
+        filter: blur(0.5px);
+    }
+}
 
 /* Content */
 .card-content {
@@ -1309,44 +1201,6 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
   font-size: 14px;
   line-height: 1.5;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Projects Grid */
 .projects-grid {
@@ -1369,9 +1223,16 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     aspect-ratio: 9/16;
 }
 
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+/* Disable hover effects on mobile for performance */
+@media (min-width: 769px) {
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+    
+    .project-card:hover .project-video {
+        transform: scale(1.02);
+    }
 }
 
 .project-video {
@@ -1382,51 +1243,14 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     transition: transform 0.3s ease;
 }
 
-.project-card:hover .project-video {
-    transform: scale(1.02);
+/* Mobile video optimization */
+@media (max-width: 768px) {
+    .project-video {
+        /* Optimize video rendering on mobile */
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Desktop - 5 columns */
 @media (min-width: 1200px) {
@@ -1529,8 +1353,11 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             transition: all 0.3s ease;
         }
 
-        .cta-card:hover {
-            transform: translateY(-2px);
+        /* Disable hover on mobile for performance */
+        @media (min-width: 769px) {
+            .cta-card:hover {
+                transform: translateY(-2px);
+            }
         }
 
         .cta-card.careers {
@@ -1589,40 +1416,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /* Catalyst Portal Section */
+        /* Catalyst Portal Section - Mobile Optimized */
         .catalyst-portal {
             min-height: 100vh;
             background: radial-gradient(ellipse at center, 
@@ -1650,7 +1444,15 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
                 radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            /* Disable intensive animation on mobile */
             animation: pulse 4s ease-in-out infinite alternate;
+        }
+
+        /* Disable complex animations on mobile */
+        @media (max-width: 768px) {
+            .catalyst-portal::before {
+                animation: none;
+            }
         }
 
         .content {
@@ -1672,7 +1474,15 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            /* Disable complex animation on mobile */
             animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        /* Disable text glow animation on mobile */
+        @media (max-width: 768px) {
+            .main-title {
+                animation: none;
+            }
         }
 
         .subtitle {
@@ -1703,9 +1513,16 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             transition: all 0.3s ease;
         }
 
-        .service-item:hover {
-            color: #22d3ee;
-            transform: translateY(-2px);
+        /* Disable hover effects on mobile */
+        @media (min-width: 769px) {
+            .service-item:hover {
+                color: #22d3ee;
+                transform: translateY(-2px);
+            }
+            
+            .service-item:hover::after {
+                width: 100%;
+            }
         }
 
         .service-item::after {
@@ -1720,17 +1537,20 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             transition: width 0.3s ease;
         }
 
-        .service-item:hover::after {
-            width: 100%;
-        }
-
         .service-separator {
             width: 8px;
             height: 8px;
             background: #22d3ee;
             border-radius: 50%;
             box-shadow: 0 0 10px #22d3ee;
+            /* Disable pulsing animation on mobile */
             animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .service-separator {
+                animation: none;
+            }
         }
 
         .cta-button {
@@ -1762,26 +1582,30 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             transition: left 0.5s;
         }
 
-        .cta-button:hover::before {
-            left: 100%;
-        }
+        /* Disable complex hover effects on mobile */
+        @media (min-width: 769px) {
+            .cta-button:hover::before {
+                left: 100%;
+            }
 
-        .cta-button:hover {
-            background: rgba(34, 211, 238, 0.2);
-            border-color: rgba(34, 211, 238, 0.6);
-            color: #ffffff;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(34, 211, 238, 0.3);
+            .cta-button:hover {
+                background: rgba(34, 211, 238, 0.2);
+                border-color: rgba(34, 211, 238, 0.6);
+                color: #ffffff;
+                transform: translateY(-2px);
+                box-shadow: 0 10px 30px rgba(34, 211, 238, 0.3);
+            }
+            
+            .cta-button:hover .arrow {
+                transform: translateX(5px);
+            }
         }
 
         .arrow {
             transition: transform 0.3s ease;
         }
 
-        .cta-button:hover .arrow {
-            transform: translateX(5px);
-        }
-
+        /* Floating elements - disabled on mobile */
         .floating-elements {
             position: absolute;
             width: 100%;
@@ -1796,6 +1620,13 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             background: #22d3ee;
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
+        }
+
+        /* Disable floating elements on mobile */
+        @media (max-width: 768px) {
+            .floating-element {
+                display: none;
+            }
         }
 
         .floating-element:nth-child(1) {
@@ -1816,7 +1647,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             animation-delay: -4s;
         }
 
-        /* Achievement Gallery */
+        /* Achievement Gallery - Mobile Optimized */
         .achievement-gallery {
             padding: 5rem 20px;
             width: 100%;
@@ -1870,9 +1701,29 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .milestone-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+        /* Disable complex hover effects on mobile */
+        @media (min-width: 769px) {
+            .milestone-card:hover {
+                transform: translateY(-10px) scale(1.02);
+                box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+            }
+
+            .milestone-card:hover .card-background {
+                transform: scale(1.1);
+            }
+            
+            .milestone-card:hover .card-overlay {
+                opacity: 0.9;
+            }
+            
+            .milestone-card:hover .milestone-title {
+                transform: translateY(0);
+            }
+            
+            .milestone-card:hover .milestone-stats {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .card-background {
@@ -1884,10 +1735,6 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             background-size: cover;
             background-position: center;
             transition: transform 0.6s ease;
-        }
-
-        .milestone-card:hover .card-background {
-            transform: scale(1.1);
         }
 
         .card-overlay {
@@ -1909,10 +1756,6 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             transition: opacity 0.3s ease;
         }
 
-        .milestone-card:hover .card-overlay {
-            opacity: 0.9;
-        }
-
         .client-name {
             font-size: 0.9rem;
             font-weight: 500;
@@ -1932,21 +1775,12 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             transition: transform 0.4s ease;
         }
 
-        .milestone-card:hover .milestone-title {
-            transform: translateY(0);
-        }
-
         .milestone-stats {
             display: flex;
             gap: 1.5rem;
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.4s ease 0.1s;
-        }
-
-        .milestone-card:hover .milestone-stats {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .stat-item {
@@ -1985,6 +1819,13 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             animation: pulse-success 2s infinite;
         }
 
+        /* Disable pulse animation on mobile */
+        @media (max-width: 768px) {
+            .pulse-indicator {
+                animation: none;
+            }
+        }
+
         .achievement-badge {
             position: absolute;
             top: 1.5rem;
@@ -2015,19 +1856,13 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             box-shadow: 0 8px 25px rgba(34, 211, 238, 0.3);
         }
 
-        .load-more-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(34, 211, 238, 0.4);
+        /* Disable hover on mobile */
+        @media (min-width: 769px) {
+            .load-more-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 15px 35px rgba(34, 211, 238, 0.4);
+            }
         }
-
-
-
-
-
-
-
-
-        
 
        /* Email Subscription Bar - Compact Version */
 .email-container {
@@ -2076,13 +1911,6 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     transition: all 0.3s ease;
     white-space: nowrap;
 }
-
-
-        
-
-
-
-
 
 /* === Large Mobile (max-width: 768px) === */
 @media (max-width: 768px) {
@@ -2167,43 +1995,20 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-   /* Nebula Effects */
+   /* Nebula Effects - Disabled on mobile */
         .nebula {
             position: absolute;
             border-radius: 50%;
             filter: blur(60px);
             opacity: 0.6;
             animation: float 8s ease-in-out infinite alternate;
+        }
+
+        /* Disable nebula effects on mobile */
+        @media (max-width: 768px) {
+            .nebula {
+                display: none;
+            }
         }
 
         .nebula.blue {
@@ -2230,7 +2035,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             }
         }
 
-        /* Moving Stars */
+        /* Moving Stars - Reduced on mobile */
         .moving-stars {
             position: absolute;
             top: 0;
@@ -2287,11 +2092,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             100% { transform: translateX(-100px); }
         }
 
-
-
-
-
-/* Compact Video Showcase Section Styles */
+/* Compact Video Showcase Section Styles - Mobile Optimized */
 .video-showcase-section {
     width: 100%;
     height: 50vh;
@@ -2319,6 +2120,14 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     top: 0;
     left: 0;
     z-index: 1;
+}
+
+/* Mobile video optimization */
+@media (max-width: 768px) {
+    .showcase-video {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
 }
 
 .video-overlay {
@@ -2420,11 +2229,14 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-.feature-item:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.5);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+/* Disable hover effects on mobile */
+@media (min-width: 769px) {
+    .feature-item:hover {
+        background: rgba(255, 255, 255, 0.25);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+    }
 }
 
 .feature-separator {
@@ -2471,16 +2283,23 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     transition: left 0.6s;
 }
 
-.farm-cta-btn:hover::before {
-    left: 100%;
-}
+/* Disable complex hover effects on mobile */
+@media (min-width: 769px) {
+    .farm-cta-btn:hover::before {
+        left: 100%;
+    }
 
-.farm-cta-btn:hover {
-    background: rgba(255, 255, 255, 1);
-    border-color: rgba(255, 255, 255, 1);
-    color: #1f2937;
-    transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(255, 255, 255, 0.3);
+    .farm-cta-btn:hover {
+        background: rgba(255, 255, 255, 1);
+        border-color: rgba(255, 255, 255, 1);
+        color: #1f2937;
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(255, 255, 255, 0.3);
+    }
+    
+    .farm-cta-btn:hover .arrow {
+        transform: translateX(6px);
+    }
 }
 
 .farm-cta-btn .arrow {
@@ -2488,11 +2307,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     font-size: 1rem;
 }
 
-.farm-cta-btn:hover .arrow {
-    transform: translateX(6px);
-}
-
-/* Enhanced Animations */
+/* Enhanced Animations - Disable complex animations on mobile */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -2501,6 +2316,19 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Disable animations on mobile for better performance */
+@media (max-width: 768px) {
+    .farm-tag,
+    .video-title,
+    .video-description,
+    .farm-features,
+    .farm-cta-btn {
+        animation: none;
+        opacity: 1;
+        transform: none;
     }
 }
 
@@ -2588,11 +2416,6 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     }
 }
 
-
-
-
-
-
    .stars-container {
             position: absolute;
             top: 0;
@@ -2641,29 +2464,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- /* Testimonials Section */
+ /* Testimonials Section - Mobile Optimized */
         .testimonials-section {
             padding: clamp(60px, 8vw, 120px) clamp(15px, 4vw, 40px);
             background: #ffffff;
@@ -2749,11 +2550,14 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             pointer-events: none;
         }
 
-        .testimonial-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 60px rgba(0, 0, 0, 0.08);
-            border-color: rgba(0, 0, 0, 0.08);
-            background: rgba(255, 255, 255, 0.95);
+        /* Disable hover effects on mobile */
+        @media (min-width: 769px) {
+            .testimonial-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 12px 60px rgba(0, 0, 0, 0.08);
+                border-color: rgba(0, 0, 0, 0.08);
+                background: rgba(255, 255, 255, 0.95);
+            }
         }
 
         .testimonial-text {
@@ -2843,11 +2647,18 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             border-radius: 50%;
         }
 
-        .nav-arrow:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-            background: rgba(255, 255, 255, 0.95);
-            border-color: rgba(0, 0, 0, 0.08);
+        /* Disable hover effects on mobile */
+        @media (min-width: 769px) {
+            .nav-arrow:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+                background: rgba(255, 255, 255, 0.95);
+                border-color: rgba(0, 0, 0, 0.08);
+            }
+            
+            .nav-arrow:hover svg {
+                color: #333333;
+            }
         }
 
         .nav-arrow:active {
@@ -2861,10 +2672,6 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             transition: color 0.3s ease;
             position: relative;
             z-index: 2;
-        }
-
-        .nav-arrow:hover svg {
-            color: #333333;
         }
 
         .nav-arrow.disabled {
@@ -2955,105 +2762,27 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        /* Additional mobile performance optimizations */
+        @media (max-width: 768px) {
+            /* Reduce backdrop blur on mobile for better performance */
+            .testimonial-card {
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
+            
+            .nav-arrow {
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
+            
+            .email-container {
+                backdrop-filter: blur(10px);
+            }
+            
+            .email-input {
+                backdrop-filter: blur(5px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -3064,7 +2793,6 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     <a href="#hero">
   <img src="logo (2).png" alt="Logo" class="navbar-logo" />
 </a>
-
 
     <!-- Menu -->
     <div class="navbar-menu">
@@ -3101,35 +2829,15 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
 
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- Hero Section -->
     <section class="hero" id="hero">
-
-
 
     <!-- Nebula Effects -->
         <div class="nebula blue" style="top: 10%; left: 20%; width: 300px; height: 300px;"></div>
         <div class="nebula purple" style="top: 60%; right: 15%; width: 400px; height: 400px;"></div>
         <div class="nebula pink" style="top: 30%; right: 40%; width: 250px; height: 250px;"></div>
 
-
-
-
         <div class="moving-stars" id="starsContainer"></div>
-
-  <!-- Additional Stars Layer -->
-        <!-- <div class="stars-layer" id="starsLayer"></div> -->
 
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="background video 5(2).mp4" type="video/mp4">
@@ -3137,8 +2845,6 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
         </video>
 
   <div class="stars-layer"></div>
-        
-
 
 <!-- Glassy Message Form -->
 <div class="email-container">
@@ -3156,34 +2862,9 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     </form>
 </div>
 
-
 <div class="stars-container" id="starsContainer"></div>
 
-
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- Worked With Section -->
     <section class="section white worked-with-section" id="worked-with2">
@@ -3272,65 +2953,6 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
         </div>
     </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- Expertise Section -->
     <section class="expertise-section" id="experience">
         <div class="container">
@@ -3411,49 +3033,9 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
   </div>
 </div>
 
-
-
-
-
-
-
-
-
             </div>
         </div>
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 
     <!-- Projects Section -->
     <section class="section white" id="projects">
@@ -3523,26 +3105,6 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
         </div>
     </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  <section class="achievement-gallery">
         <div class="section-header">
             <div class="section-tag">Successful Collaborations</div>
@@ -3562,10 +3124,6 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
                             <div class="stat-value">90%</div>
                             Efficiency
                         </div>
-                        <!-- <div class="stat-item">
-                            <div class="stat-value">35%</div>
-                            Donations
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -3575,17 +3133,13 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
                 <div class="pulse-indicator"></div>
                 <div class="card-background"></div>
                 <div class="card-overlay">
-                    <div class="client-name">Nature’s Virtue</div>
-                    <h3 class="milestone-title">Collaborate with Nature’s Virtue and develop creative strategy</h3>
+                    <div class="client-name">Nature's Virtue</div>
+                    <h3 class="milestone-title">Collaborate with Nature's Virtue and develop creative strategy</h3>
                     <div class="milestone-stats">
                         <div class="stat-item">
                             <div class="stat-value">95%</div>
                             Efficiency
                         </div>
-                        <!-- <div class="stat-item">
-                            <div class="stat-value">450%</div>
-                            Listings
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -3611,28 +3165,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
                 </div>
             </div>
         </div>
-        
-        <!-- <button class="load-more-btn">View All Success Stories</button> -->
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
  <section class="testimonials-section">
         <div class="testimonials-container">
@@ -3691,21 +3224,11 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
         </div>
     </section>
 
-
-
-
-
-
-
-
-
-
-
 <!-- Full-Width Video Section -->
 <section class="video-showcase-section">
     <div class="video-container">
         <video class="showcase-video" autoplay muted loop playsinline>
-            <source src="0922.mp4"video/mp4">
+            <source src="0922.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="video-overlay">
@@ -3729,35 +3252,6 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     </div>
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- Contact Section -->
     <section class="section black" id="contact">
         <div class="section-content">
@@ -3778,56 +3272,6 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
         </div>
     </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
     <!-- Footer -->
     <footer class="section white footer">
         <div class="footer-content">
@@ -3837,7 +3281,27 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     </footer>
 
     <script>
-         function toggleMobileMenu() {
+         // Mobile performance optimizations
+        let isMobile = window.innerWidth <= 768;
+        let isLowPerformance = false;
+        
+        // Detect low-performance devices
+        function detectLowPerformance() {
+            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            const hardwareConcurrency = navigator.hardwareConcurrency || 1;
+            
+            // Consider device low-performance if:
+            // - Less than 4 CPU cores
+            // - Slow connection (2G/3G)
+            // - Device memory less than 4GB (if available)
+            isLowPerformance = hardwareConcurrency < 4 || 
+                              (connection && ['2g', '3g', 'slow-2g'].includes(connection.effectiveType)) ||
+                              (navigator.deviceMemory && navigator.deviceMemory < 4);
+        }
+        
+        detectLowPerformance();
+
+        function toggleMobileMenu() {
             const hamburger = document.querySelector('.hamburger');
             const mobileMenu = document.getElementById('mobileMenu');
             
@@ -3870,7 +3334,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             });
         });
 
-        // Create stars animation
+        // Optimized stars creation with reduced count for mobile
         function createStars() {
             const starsContainer = document.createElement('div');
             starsContainer.id = 'starsContainer';
@@ -3885,13 +3349,21 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             `;
             document.body.appendChild(starsContainer);
             
-            const numberOfStars = window.innerWidth < 768 ? 150 : 300;
+            // Significantly reduce star count for mobile and low-performance devices
+            let numberOfStars;
+            if (isLowPerformance) {
+                numberOfStars = 50; // Very few stars for low-performance devices
+            } else if (isMobile) {
+                numberOfStars = 100; // Reduced for mobile
+            } else {
+                numberOfStars = 200; // Standard for desktop
+            }
             
             for (let i = 0; i < numberOfStars; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
                 
-                const sizes = ['tiny', 'tiny', 'tiny', 'tiny', 'tiny', 'small', 'small', 'small', 'medium', 'bright', 'bright-cross'];
+                const sizes = ['tiny', 'tiny', 'tiny', 'small', 'medium'];
                 const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
                 star.classList.add(randomSize);
                 
@@ -3905,110 +3377,102 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
 
         createStars();
 
-        // Mouse movement interaction - stars move away from cursor (desktop only)
-        if (window.innerWidth > 768) {
-            document.addEventListener('mousemove', function(e) {
-                const mouseX = e.clientX;
-                const mouseY = e.clientY;
-                const repelDistance = 100;
+        // Optimized mouse interaction - disabled on mobile for performance
+        if (!isMobile && !isLowPerformance) {
+            let throttledMouseMove = throttle(handleMouseMove, 16); // ~60fps
+            document.addEventListener('mousemove', throttledMouseMove);
+        }
+
+        function handleMouseMove(e) {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            const repelDistance = 80; // Reduced distance
+            
+            const stars = document.querySelectorAll('.star');
+            
+            stars.forEach(star => {
+                const rect = star.getBoundingClientRect();
+                const starX = rect.left + rect.width / 2;
+                const starY = rect.top + rect.height / 2;
                 
-                const stars = document.querySelectorAll('.star');
+                const deltaX = starX - mouseX;
+                const deltaY = starY - mouseY;
+                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
                 
-                stars.forEach(star => {
-                    const rect = star.getBoundingClientRect();
-                    const starX = rect.left + rect.width / 2;
-                    const starY = rect.top + rect.height / 2;
+                if (distance < repelDistance) {
+                    const repelStrength = (repelDistance - distance) / repelDistance;
+                    const moveDistance = repelStrength * 20; // Reduced movement
                     
-                    const deltaX = starX - mouseX;
-                    const deltaY = starY - mouseY;
-                    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                    const angle = Math.atan2(deltaY, deltaX);
+                    const moveX = Math.cos(angle) * moveDistance;
+                    const moveY = Math.sin(angle) * moveDistance;
                     
-                    if (distance < repelDistance) {
-                        const repelStrength = (repelDistance - distance) / repelDistance;
-                        const moveDistance = repelStrength * 30;
-                        
-                        const angle = Math.atan2(deltaY, deltaX);
-                        const moveX = Math.cos(angle) * moveDistance;
-                        const moveY = Math.sin(angle) * moveDistance;
-                        
-                        star.style.transform = `translate(${moveX}px, ${moveY}px)`;
-                        star.style.transition = 'transform 0.3s ease-out';
-                    } else {
-                        star.style.transform = 'translate(0px, 0px)';
-                        star.style.transition = 'transform 0.5s ease-out';
-                    }
-                });
+                    star.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    star.style.transition = 'transform 0.2s ease-out';
+                } else {
+                    star.style.transform = 'translate(0px, 0px)';
+                    star.style.transition = 'transform 0.3s ease-out';
+                }
             });
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // Throttle function for performance
+        function throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            }
+        }
 
         let mouseX = 0;
         let mouseY = 0;
 
-        // Generate only moving stars
-        function createStars() {
+        // Optimized moving stars with reduced count for mobile
+        function createMovingStars() {
             const container = document.getElementById('starsContainer');
-            const starCount = 100;
+            if (!container) return;
+            
+            const starCount = isMobile ? 30 : 60; // Reduced for mobile
 
             for (let i = 0; i < starCount; i++) {
-                createStar(container);
+                createMovingStar(container);
             }
         }
 
-        function createStar(container) {
+        function createMovingStar(container) {
+            if (!container) return;
+            
             const star = document.createElement('div');
-            star.className = Math.random() > 0.7 ? 'star large' : 'star';
+            star.className = Math.random() > 0.8 ? 'star large' : 'star';
             star.style.top = Math.random() * 100 + '%';
             star.style.left = 'calc(100vw + 10px)';
             
-            // Random animation duration between 8-20 seconds
-            const duration = Math.random() * 12 + 8;
+            // Random animation duration
+            const duration = Math.random() * 8 + 6; // Shorter duration
             star.style.animationDuration = duration + 's';
-            star.style.animationDelay = Math.random() * 20 + 's';
+            star.style.animationDelay = Math.random() * 10 + 's';
             
             container.appendChild(star);
 
-            // Remove star after animation completes and create a new one
+            // Remove star after animation and create new one
             setTimeout(() => {
                 if (star.parentNode) {
                     star.parentNode.removeChild(star);
-                    createStar(container);
+                    createMovingStar(container);
                 }
             }, (duration + parseFloat(star.style.animationDelay.replace('s', ''))) * 1000);
         }
 
-        // Handle cursor interaction with stars
+        // Optimized star interaction - disabled on mobile
         function handleStarInteraction() {
+            if (isMobile) return; // Skip on mobile
+            
             const stars = document.querySelectorAll('.star');
             
             stars.forEach(star => {
@@ -4023,11 +3487,11 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
                 // Reset classes
                 star.classList.remove('cursor-near', 'cursor-very-near');
 
-                if (distance < 100) {
-                    if (distance < 50) {
+                if (distance < 80) { // Reduced interaction distance
+                    if (distance < 40) {
                         // Very close - push star away
                         const angle = Math.atan2(starY - mouseY, starX - mouseX);
-                        const pushDistance = (50 - distance) * 0.5;
+                        const pushDistance = (40 - distance) * 0.3; // Reduced push
                         const pushX = Math.cos(angle) * pushDistance;
                         const pushY = Math.sin(angle) * pushDistance;
                         
@@ -4035,146 +3499,119 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
                         star.style.setProperty('--push-x', pushX + 'px');
                         star.style.setProperty('--push-y', pushY + 'px');
                     } else {
-                        // Moderately close - just highlight
                         star.classList.add('cursor-near');
                     }
                 }
             });
         }
 
-        // Track mouse position
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
+        // Track mouse position (desktop only)
+        if (!isMobile) {
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+        }
 
-        // Initialize
+        // Optimized initialization
         document.addEventListener('DOMContentLoaded', function() {
-            createStars();
+            createMovingStars();
             
-            // Update star interactions regularly
-            setInterval(handleStarInteraction, 16); // ~60fps
+            // Update star interactions less frequently on desktop
+            if (!isMobile && !isLowPerformance) {
+                setInterval(handleStarInteraction, 32); // ~30fps instead of 60fps
+            }
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  const hamburger = document.querySelector('.hamburger');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  const mobileLinks = document.querySelectorAll('.mobile-menu a');
-
-  // Toggle menu
-  hamburger.addEventListener('click', () => {
-    mobileMenu.classList.toggle('active');
-  });
-
-  // Close menu on link click
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('active'); // closes menu
-    });
-  });
-
-
-
-
-   
-
-
-
-
-
-
-
+        // Mobile menu handlers
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-menu a');
+
+        // Toggle menu
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close menu on link click
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for video optimization
+        if ('IntersectionObserver' in window) {
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const video = entry.target;
+                    if (entry.isIntersecting) {
+                        // Video is visible, ensure it's playing
+                        if (video.paused) {
+                            video.play().catch(e => console.log('Video autoplay failed:', e));
+                        }
+                    } else if (isMobile) {
+                        // On mobile, pause videos when not visible to save resources
+                        video.pause();
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% visible
+            });
+
+            // Observe all videos
+            document.querySelectorAll('video').forEach(video => {
+                videoObserver.observe(video);
+                
+                // Optimize video settings for mobile
+                if (isMobile) {
+                    video.setAttribute('preload', 'metadata');
+                    video.setAttribute('webkit-playsinline', 'true');
+                    video.setAttribute('playsinline', 'true');
+                }
+            });
+        }
+
+        // Testimonials navigation function (placeholder)
+        function navigateTestimonials(direction) {
+            console.log('Navigate testimonials:', direction);
+            // Add your testimonials navigation logic here
+        }
+
+        // Reduce animation complexity on low-performance devices
+        if (isLowPerformance) {
+            // Disable complex CSS animations
+            const style = document.createElement('style');
+            style.textContent = `
+                * {
+                    animation-duration: 0.1s !important;
+                    transition-duration: 0.1s !important;
+                }
+                .logos-track {
+                    animation: none !important;
+                }
+                .nebula {
+                    display: none !important;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Handle resize events
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                isMobile = window.innerWidth <= 768;
+            }, 250);
+        });
         
         </script>
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
     (function() {
-        emailjs.init("BD07EXf9oP0ZfdORZ"); // replace with your EmailJS key
+        emailjs.init("BD07EXf9oP0ZfdORZ");
     })();
 
     function handleSend(event) {
@@ -4185,6 +3622,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             message: message
         }).then(function(response) {
             alert("Message sent successfully!");
+            document.getElementById("messageInput").value = '';
         }, function(error) {
             alert("Failed to send. Please try again.");
         });
@@ -4192,5 +3630,4 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
 </script>
 
 </body>
-</html> 
- 
+</html>
