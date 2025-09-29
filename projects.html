@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZipSolutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8e8e8;
+        }
+
+        .header {
+            background-color: #d4d4d4;
+            padding: 15px 20px;
+            border-bottom: 2px solid #999;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            background-color: #ffed00;
+            padding: 2px 8px;
+            border-radius: 3px;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .video-card {
+            background-color: #ff0000;
+            color: white;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+            cursor: pointer;
+            width: 500px;
+        }
+
+        .video-card video {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-label {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: rgba(255, 0, 0, 0.8);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .promo-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promo-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .promo-section button {
+            background-color: white;
+            border: 2px solid #333;
+            padding: 12px 40px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .promo-section button:hover {
+            background-color: #333;
+            color: white;
+        }
+
+        .side-decoration {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 80px;
+            background-color: #ffb3b3;
+            border-radius: 10px;
+        }
+
+        .side-decoration.left {
+            left: 10px;
+        }
+
+        .side-decoration.right {
+            right: 10px;
+        }
+
+        .easy-pay-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 80px 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .easy-pay-section h2 {
+            font-size: 28px;
+            color: #333;
+        }
+
+        .bottom-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .bottom-card {
+            background-color: #ff0000;
+            padding: 60px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .bottom-card:hover {
+            transform: scale(1.05);
+        }
+
+        .video-card:hover {
+            transform: scale(1.02);
+            transition: transform 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <span>Z</span>ipsolutions
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- First row of videos -->
+        <div class="video-grid">
+            <div class="video-card">
+                <video autoplay loop muted playsinline>
+                    <source src="videos/Crabs Cafe Connect.mp4" type="video/mp4">
+                </video>
+                <div class="video-label">video 1</div>
+            </div>
+            <div class="video-card">
+                <video autoplay loop muted playsinline>
+                    <source src="video2.mp4" type="video/mp4">
+                </video>
+                <div class="video-label">video 2</div>
+            </div>
+            <div class="video-card">
+                <video autoplay loop muted playsinline>
+                    <source src="video3.mp4" type="video/mp4">
+                </video>
+                <div class="video-label">video 3</div>
+            </div>
+            <div class="video-card">
+                <video autoplay loop muted playsinline>
+                    <source src="video4.mp4" type="video/mp4">
+                </video>
+                <div class="video-label">video 4</div>
+            </div>
+        </div>
+
+        <!-- Customize section -->
+        <div class="promo-section">
+            <div class="side-decoration left"></div>
+            <div class="side-decoration right"></div>
+            <h2>Customize you with your way</h2>
+            <button>Book a Call</button>
+        </div>
+
+        <!-- Second and third rows of videos -->
+        <div class="video-grid">
+            <div class="video-card">
+                <video autoplay loop muted playsinline>
+                    <source src="video5.mp4" type="video/mp4">
+                </video>
+                <div class="video-label">video 5</div>
+            </div>
+            <div class="video-card">
+                <video autoplay loop muted playsinline>
+                    <source src="video6.mp4" type="video/mp4">
+                </video>
+                <div class="video-label">video 6</div>
+            </div>
+            <div class="video-card">
+                <video autoplay loop muted playsinline>
+                    <source src="video7.mp4" type="video/mp4">
+                </video>
+                <div class="video-label">video 7</div>
+            </div>
+            <div class="video-card">
+                <video autoplay loop muted playsinline>
+                    <source src="video8.mp4" type="video/mp4">
+                </video>
+                <div class="video-label">video 8</div>
+            </div>
+        </div>
+
+        <div class="video-grid">
+            <div class="video-card">
+                <video autoplay loop muted playsinline>
+                    <source src="video9.mp4" type="video/mp4">
+                </video>
+                <div class="video-label">video 9</div>
+            </div>
+            <div class="video-card">
+                <video autoplay loop muted playsinline>
+                    <source src="video10.mp4" type="video/mp4">
+                </video>
+                <div class="video-label">video 10</div>
+            </div>
+            <div class="video-card">
+                <video autoplay loop muted playsinline>
+                    <source src="video11.mp4" type="video/mp4">
+                </video>
+                <div class="video-label">video 11</div>
+            </div>
+            <div class="video-card">
+                <video autoplay loop muted playsinline>
+                    <source src="video12.mp4" type="video/mp4">
+                </video>
+                <div class="video-label">video 12</div>
+            </div>
+        </div>
+
+        <!-- Easy Pay section -->
+        <div class="easy-pay-section">
+            <h2>Easy Pay</h2>
+        </div>
+
+        <!-- Bottom row of cards -->
+        <div class="bottom-cards">
+            <div class="bottom-card"></div>
+            <div class="bottom-card"></div>
+            <div class="bottom-card"></div>
+            <div class="bottom-card"></div>
+        </div>
+    </div>
+</body>
+</html>

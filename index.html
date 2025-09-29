@@ -67,7 +67,7 @@ html {
 
 .navbar-menu {
     display: flex;
-    gap: 20px;
+    gap: 12px; /* reduced from 20px */
     align-items: center;
 }
 
@@ -75,31 +75,34 @@ html {
     color: white;
     text-decoration: none;
     font-weight: 500;
-    font-size: 15px;
-    padding: 4px 16px; /* Reduced vertical padding by 50% */
-    border-radius: 6px;
+    font-size: 13px; /* reduced from 15px */
+    padding: 2px 10px; /* reduced further */
+    border-radius: 4px; /* smaller rounding */
     transition: all 0.3s ease;
     position: relative;
     white-space: nowrap;
 }
 
 .navbar-menu a:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-1px); /* smaller hover movement */
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.08);
 }
 
 .navbar-menu a.cta {
-    border: 2px solid white;
-    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid white; /* thinner border */
+    background: rgba(255, 255, 255, 0.08);
     font-weight: 600;
+    font-size: 13px;
+    padding: 3px 12px;
 }
 
 .navbar-menu a.cta:hover {
     background: white;
     color: black;
-    transform: translateY(-2px) scale(1.05);
+    transform: translateY(-1px) scale(1.03); /* subtle effect */
 }
+
 
 /* Hamburger Menu */
 .hamburger {
