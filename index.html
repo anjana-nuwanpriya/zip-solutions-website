@@ -2075,7 +2075,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             }
         }
 
-        /* Moving Stars - Reduced on mobile */
+       /* Moving Stars - Reduced on mobile */
         .moving-stars {
             position: absolute;
             top: 0;
@@ -2092,7 +2092,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 10;
+            z-index: 100;
             pointer-events: none;
         }
 
@@ -2128,10 +2128,22 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
         }
 
         @keyframes moveStars {
-            0% { transform: translateX(100vw); }
-            100% { transform: translateX(-100px); }
+            0% { transform: translateY(100vh); }
+            100% { transform: translateY(-100px); }
         }
 
+        /* Reduce stars on mobile */
+        @media (max-width: 768px) {
+            .star {
+                width: 1.5px;
+                height: 1.5px;
+            }
+
+            .star.large {
+                width: 2px;
+                height: 2px;
+            }
+        }
 /* Compact Video Showcase Section Styles - Mobile Optimized */
 .video-showcase-section {
     width: 100%;
@@ -2456,53 +2468,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     }
 }
 
-   .stars-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .star {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 50%;
-            box-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-            animation: moveStar linear infinite;
-        }
-
-        .star.large {
-            width: 2px;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 3px rgba(255, 255, 255, 0.4);
-        }
-
-        .star.cursor-near {
-            transform: scale(1.5);
-            box-shadow: 0 0 4px rgba(96, 165, 250, 0.5);
-            background: rgba(96, 165, 250, 0.6);
-        }
-
-        .star.cursor-very-near {
-            transform: scale(2) translateX(var(--push-x, 0)) translateY(var(--push-y, 0));
-            box-shadow: 0 0 6px rgba(96, 165, 250, 0.7);
-            background: rgba(59, 130, 246, 0.7);
-        }
-
-        @keyframes moveStar {
-            from {
-                left: calc(100vw + 10px);
-            }
-            to {
-                left: -10px;
-            }
-        }
+  
 
  /* Testimonials Section - Mobile Optimized */
         .testimonials-section {
@@ -2872,12 +2838,12 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
 <!-- Hero Section -->
 <section class="hero" id="hero">
 
-    <!-- Nebula Effects -->
-    <div class="nebula blue" style="top: 10%; left: 20%; width: 300px; height: 300px;"></div>
-    <div class="nebula purple" style="top: 60%; right: 15%; width: 400px; height: 400px;"></div>
-    <div class="nebula pink" style="top: 30%; right: 40%; width: 250px; height: 250px;"></div>
+    
 
-    <div class="moving-stars" id="starsContainer"></div>
+     <!-- Moving Stars Container -->
+        <div class="moving-stars">
+            <div class="stars-layer" id="starsLayer"></div>
+        </div>
 
     <!-- Desktop/Tablet Video -->
     <video class="hero-video" autoplay muted loop playsinline poster="thumbnail.jpg">
@@ -3379,276 +3345,69 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             });
         });
 
-        // Optimized stars creation with reduced count for mobile
-        function createStars() {
-            const starsContainer = document.createElement('div');
-            starsContainer.id = 'starsContainer';
-            starsContainer.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                pointer-events: none;
-                z-index: -1;
-            `;
-            document.body.appendChild(starsContainer);
+       
+
+            // Generate Moving Stars
+        function generateStars() {
+            const starsLayer = document.getElementById('starsLayer');
+            const isMobile = window.innerWidth <= 768;
+            const starCount = isMobile ? 50 : 150; // Fewer stars on mobile
             
-            // Significantly reduce star count for mobile and low-performance devices
-            let numberOfStars;
-            if (isLowPerformance) {
-                numberOfStars = 50; // Very few stars for low-performance devices
-            } else if (isMobile) {
-                numberOfStars = 100; // Reduced for mobile
-            } else {
-                numberOfStars = 200; // Standard for desktop
-            }
+            // Clear existing stars
+            starsLayer.innerHTML = '';
             
-            for (let i = 0; i < numberOfStars; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                
-                const sizes = ['tiny', 'tiny', 'tiny', 'small', 'medium'];
-                const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
-                star.classList.add(randomSize);
-                
-                star.style.left = Math.random() * 200 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.animationDelay = Math.random() * 5 + 's';
-                
-                starsContainer.appendChild(star);
-            }
-        }
-
-        createStars();
-
-        // Optimized mouse interaction - disabled on mobile for performance
-        if (!isMobile && !isLowPerformance) {
-            let throttledMouseMove = throttle(handleMouseMove, 16); // ~60fps
-            document.addEventListener('mousemove', throttledMouseMove);
-        }
-
-        function handleMouseMove(e) {
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-            const repelDistance = 80; // Reduced distance
-            
-            const stars = document.querySelectorAll('.star');
-            
-            stars.forEach(star => {
-                const rect = star.getBoundingClientRect();
-                const starX = rect.left + rect.width / 2;
-                const starY = rect.top + rect.height / 2;
-                
-                const deltaX = starX - mouseX;
-                const deltaY = starY - mouseY;
-                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-                
-                if (distance < repelDistance) {
-                    const repelStrength = (repelDistance - distance) / repelDistance;
-                    const moveDistance = repelStrength * 20; // Reduced movement
-                    
-                    const angle = Math.atan2(deltaY, deltaX);
-                    const moveX = Math.cos(angle) * moveDistance;
-                    const moveY = Math.sin(angle) * moveDistance;
-                    
-                    star.style.transform = `translate(${moveX}px, ${moveY}px)`;
-                    star.style.transition = 'transform 0.2s ease-out';
-                } else {
-                    star.style.transform = 'translate(0px, 0px)';
-                    star.style.transition = 'transform 0.3s ease-out';
-                }
-            });
-        }
-
-        // Throttle function for performance
-        function throttle(func, limit) {
-            let inThrottle;
-            return function() {
-                const args = arguments;
-                const context = this;
-                if (!inThrottle) {
-                    func.apply(context, args);
-                    inThrottle = true;
-                    setTimeout(() => inThrottle = false, limit);
-                }
-            }
-        }
-
-        let mouseX = 0;
-        let mouseY = 0;
-
-        // Optimized moving stars with reduced count for mobile
-        function createMovingStars() {
-            const container = document.getElementById('starsContainer');
-            if (!container) return;
-            
-            const starCount = isMobile ? 30 : 60; // Reduced for mobile
-
             for (let i = 0; i < starCount; i++) {
-                createMovingStar(container);
+                const star = document.createElement('div');
+                star.className = Math.random() > 0.8 ? 'star large' : 'star';
+                
+                // Random horizontal position
+                star.style.left = Math.random() * 100 + '%';
+                
+                // Random starting vertical position
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Random animation duration (15-25 seconds)
+                const duration = 15 + Math.random() * 10;
+                star.style.animationDuration = `2s, ${duration}s`;
+                
+                // Random animation delay
+                star.style.animationDelay = `${Math.random() * 2}s, ${Math.random() * -20}s`;
+                
+                starsLayer.appendChild(star);
             }
         }
 
-        function createMovingStar(container) {
-            if (!container) return;
-            
-            const star = document.createElement('div');
-            star.className = Math.random() > 0.8 ? 'star large' : 'star';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.left = 'calc(100vw + 10px)';
-            
-            // Random animation duration
-            const duration = Math.random() * 8 + 6; // Shorter duration
-            star.style.animationDuration = duration + 's';
-            star.style.animationDelay = Math.random() * 10 + 's';
-            
-            container.appendChild(star);
+        // Generate stars on load
+        generateStars();
 
-            // Remove star after animation and create new one
-            setTimeout(() => {
-                if (star.parentNode) {
-                    star.parentNode.removeChild(star);
-                    createMovingStar(container);
-                }
-            }, (duration + parseFloat(star.style.animationDelay.replace('s', ''))) * 1000);
-        }
+        // Regenerate stars on window resize (for mobile/desktop transitions)
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                generateStars();
+            }, 250);
+        });
 
-        // Optimized star interaction - disabled on mobile
-        function handleStarInteraction() {
-            if (isMobile) return; // Skip on mobile
-            
+        // Optional: Add hover effect
+        const starsLayer = document.getElementById('starsLayer');
+        starsLayer.addEventListener('mousemove', (e) => {
             const stars = document.querySelectorAll('.star');
-            
             stars.forEach(star => {
                 const rect = star.getBoundingClientRect();
                 const starX = rect.left + rect.width / 2;
                 const starY = rect.top + rect.height / 2;
-                
                 const distance = Math.sqrt(
-                    Math.pow(mouseX - starX, 2) + Math.pow(mouseY - starY, 2)
+                    Math.pow(e.clientX - starX, 2) + 
+                    Math.pow(e.clientY - starY, 2)
                 );
-
-                // Reset classes
-                star.classList.remove('cursor-near', 'cursor-very-near');
-
-                if (distance < 80) { // Reduced interaction distance
-                    if (distance < 40) {
-                        // Very close - push star away
-                        const angle = Math.atan2(starY - mouseY, starX - mouseX);
-                        const pushDistance = (40 - distance) * 0.3; // Reduced push
-                        const pushX = Math.cos(angle) * pushDistance;
-                        const pushY = Math.sin(angle) * pushDistance;
-                        
-                        star.classList.add('cursor-very-near');
-                        star.style.setProperty('--push-x', pushX + 'px');
-                        star.style.setProperty('--push-y', pushY + 'px');
-                    } else {
-                        star.classList.add('cursor-near');
-                    }
-                }
-            });
-        }
-
-        // Track mouse position (desktop only)
-        if (!isMobile) {
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
-        }
-
-        // Optimized initialization
-        document.addEventListener('DOMContentLoaded', function() {
-            createMovingStars();
-            
-            // Update star interactions less frequently on desktop
-            if (!isMobile && !isLowPerformance) {
-                setInterval(handleStarInteraction, 32); // ~30fps instead of 60fps
-            }
-        });
-
-        // Mobile menu handlers
-        const hamburger = document.querySelector('.hamburger');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-menu a');
-
-        // Toggle menu
-        hamburger.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-        });
-
-        // Close menu on link click
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-        });
-
-        // Intersection Observer for video optimization
-        if ('IntersectionObserver' in window) {
-            const videoObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    const video = entry.target;
-                    if (entry.isIntersecting) {
-                        // Video is visible, ensure it's playing
-                        if (video.paused) {
-                            video.play().catch(e => console.log('Video autoplay failed:', e));
-                        }
-                    } else if (isMobile) {
-                        // On mobile, pause videos when not visible to save resources
-                        video.pause();
-                    }
-                });
-            }, {
-                threshold: 0.1 // Trigger when 10% visible
-            });
-
-            // Observe all videos
-            document.querySelectorAll('video').forEach(video => {
-                videoObserver.observe(video);
                 
-                // Optimize video settings for mobile
-                if (isMobile) {
-                    video.setAttribute('preload', 'metadata');
-                    video.setAttribute('webkit-playsinline', 'true');
-                    video.setAttribute('playsinline', 'true');
+                if (distance < 100) {
+                    star.classList.add('hover');
+                } else {
+                    star.classList.remove('hover');
                 }
             });
-        }
-
-        // Testimonials navigation function (placeholder)
-        function navigateTestimonials(direction) {
-            console.log('Navigate testimonials:', direction);
-            // Add your testimonials navigation logic here
-        }
-
-        // Reduce animation complexity on low-performance devices
-        if (isLowPerformance) {
-            // Disable complex CSS animations
-            const style = document.createElement('style');
-            style.textContent = `
-                * {
-                    animation-duration: 0.1s !important;
-                    transition-duration: 0.1s !important;
-                }
-                .logos-track {
-                    animation: none !important;
-                }
-                .nebula {
-                    display: none !important;
-                }
-            `;
-            document.head.appendChild(style);
-        }
-
-        // Handle resize events
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                isMobile = window.innerWidth <= 768;
-            }, 250);
         });
         
         </script>
