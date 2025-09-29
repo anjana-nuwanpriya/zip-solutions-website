@@ -35,7 +35,7 @@ html {
   scroll-behavior: smooth;
 }
 
-      /* Navigation Bar */
+/* Navigation Bar */
 .navbar {
     position: fixed;
     top: 0;
@@ -45,7 +45,7 @@ html {
     -webkit-backdrop-filter: blur(10px);
     background: rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    padding: 15px 10px;
+    padding: 4px 10px; /* Reduced height by 50% */
     transition: all 0.3s ease;
 }
 
@@ -59,7 +59,7 @@ html {
 }
 
 .navbar-logo {
-    height: 40px;
+    height: 18px; /* Reduced by 50% */
     object-fit: contain;
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
     z-index: 1001;
@@ -67,7 +67,7 @@ html {
 
 .navbar-menu {
     display: flex;
-    gap: 30px;
+    gap: 20px;
     align-items: center;
 }
 
@@ -75,9 +75,9 @@ html {
     color: white;
     text-decoration: none;
     font-weight: 500;
-    font-size: 16px;
-    padding: 12px 20px;
-    border-radius: 8px;
+    font-size: 15px;
+    padding: 4px 16px; /* Reduced vertical padding by 50% */
+    border-radius: 6px;
     transition: all 0.3s ease;
     position: relative;
     white-space: nowrap;
@@ -106,10 +106,10 @@ html {
     display: none;
     flex-direction: column;
     cursor: pointer;
-    padding: 8px;
+    padding: 3px; /* Reduced by 50% */
     z-index: 1001;
     background: rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
+    border-radius: 4px;
     transition: all 0.3s ease;
 }
 
@@ -118,17 +118,17 @@ html {
 }
 
 .hamburger span {
-    width: 28px;
-    height: 3px;
+    width: 24px;
+    height: 1px; /* Reduced by 50% */
     background: white;
-    margin: 3px 0;
+    margin: 2px 0;
     transition: 0.3s ease;
     border-radius: 2px;
     transform-origin: center;
 }
 
 .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
+    transform: rotate(45deg) translate(5px, 5px);
 }
 
 .hamburger.active span:nth-child(2) {
@@ -137,7 +137,7 @@ html {
 }
 
 .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* Mobile Menu */
@@ -157,7 +157,7 @@ html {
     gap: 25px;
     transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 999;
-    padding: 80px 20px 40px;
+    padding: 30px 20px 40px; /* Reduced top padding by 50% */
 }
 
 .mobile-menu.active {
@@ -255,13 +255,6 @@ html {
     }
 }
 
-
-
-
-
-
-
-
 /* Mobile video optimization */
 @media (max-width: 768px) {
     .hero-video {
@@ -316,11 +309,11 @@ html {
 /* Large Desktop */
 @media (min-width: 1200px) {
     .navbar {
-        padding: 20px 40px;
+        padding: 10px 40px; /* Reduced vertical padding by 50% */
     }
     
     .navbar-logo {
-        height: 30px;
+        height: 18px; /* Reduced by 50% */
     }
     
     .navbar-menu {
@@ -329,7 +322,7 @@ html {
     
     .navbar-menu a {
         font-size: 17px;
-        padding: 14px 24px;
+        padding: 7px 24px; /* Reduced vertical padding by 50% */
     }
 }
 
@@ -341,18 +334,18 @@ html {
     
     .navbar-menu a {
         font-size: 15px;
-        padding: 10px 18px;
+        padding: 5px 18px; /* Reduced vertical padding by 50% */
     }
 }
 
 /* Tablet */
 @media (max-width: 991px) and (min-width: 769px) {
     .navbar {
-        padding: 15px 25px;
+        padding: 7.5px 25px; /* Reduced vertical padding by 50% */
     }
     
     .navbar-logo {
-        height: 25px;
+        height: 14.5px; /* Reduced by 50% */
     }
     
     .navbar-menu {
@@ -361,7 +354,7 @@ html {
     
     .navbar-menu a {
         font-size: 14px;
-        padding: 10px 15px;
+        padding: 5px 15px; /* Reduced vertical padding by 50% */
     }
     
     .section {
@@ -372,11 +365,11 @@ html {
 /* Mobile Large */
 @media (max-width: 768px) {
     .navbar {
-        padding: 12px 20px;
+        padding: 6px 20px; /* Reduced vertical padding by 50% */
     }
     
     .navbar-logo {
-        height: 22px;
+        height: 13px; /* Reduced by 50% */
     }
     
     .navbar-menu {
@@ -397,20 +390,20 @@ html {
     
     .hero {
         padding-bottom: 2rem;
-          aspect-ratio: 1 / 1;  /* make hero a perfect square */
-    height: auto;         /* auto height from width */
-    width: 100%;          /* full width */
+        aspect-ratio: 1 / 1;  /* make hero a perfect square */
+        height: auto;         /* auto height from width */
+        width: 100%;          /* full width */
     }
 }
 
 /* Mobile Medium */
 @media (max-width: 480px) {
     .navbar {
-        padding: 10px 15px;
+        padding: 5px 15px; /* Reduced vertical padding by 50% */
     }
     
     .navbar-logo {
-        height: 20px;
+        height: 12px; /* Reduced by 50% */
     }
     
     .hamburger span {
@@ -431,20 +424,20 @@ html {
 /* Mobile Small */
 @media (max-width: 320px) {
     .navbar {
-        padding: 8px 10px;
+        padding: 4px 10px; /* Reduced vertical padding by 50% */
     }
     
     .navbar-logo {
-        height: 18px;
+        height: 12px; /* Reduced by 50% */
     }
     
     .hamburger {
-        padding: 5px;
+        padding: 2.5px; /* Reduced by 50% */
     }
     
     .hamburger span {
         width: 20px;
-        height: 2px;
+        height: 1px; /* Reduced by 50% */
     }
     
     .mobile-menu a {
@@ -478,9 +471,9 @@ html {
     
     .hero {
         padding-bottom: 1rem;
-            aspect-ratio: 1 / 1;  /* make hero a perfect square */
-    height: auto;         /* auto height from width */
-    width: 100%;          /* full width */
+        aspect-ratio: 1 / 1;  /* make hero a perfect square */
+        height: auto;         /* auto height from width */
+        width: 100%;          /* full width */
     }
 }
 
@@ -1899,10 +1892,10 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
+    border-radius: 200px;
     padding: 0.75rem;  /* smaller than 1.5rem */
     max-width: 800px;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     z-index: 3;
     margin: 0 auto;
@@ -1919,7 +1912,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
     flex: 1;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
+    border-radius: 200px;
     padding: 0.6rem 0.8rem; /* smaller height */
     color: white;
     font-size: 0.9rem;
@@ -1932,7 +1925,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
 .subscribe-btn {
     background: linear-gradient(135deg, #b7ba0000 0%, #b4c10000 100%);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
+    border-radius: 200px;
     padding: 0.6rem 1rem; /* smaller height */
     color: white;
     font-weight: 600;
