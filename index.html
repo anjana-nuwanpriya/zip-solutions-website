@@ -227,7 +227,7 @@ html {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     object-fit: cover;
     z-index: 1;
 }
@@ -258,7 +258,7 @@ html {
 /* Mobile video optimization */
 @media (max-width: 768px) {
     .hero-video {
-        transform: scale(1.1);
+       height: 100vh;
         opacity: 0.8;
     }
 }
@@ -390,8 +390,8 @@ html {
     
     .hero {
         padding-bottom: 2rem;
-        aspect-ratio: 1 / 1;  /* make hero a perfect square */
-        height: auto;         /* auto height from width */
+        /* aspect-ratio: 1 / 1;  make hero a perfect square */
+        height: 100vh;         /* auto height from width */
         width: 100%;          /* full width */
     }
 }
@@ -471,8 +471,8 @@ html {
     
     .hero {
         padding-bottom: 1rem;
-        aspect-ratio: 1 / 1;  /* make hero a perfect square */
-        height: auto;         /* auto height from width */
+        /* aspect-ratio: 1 / 1;  make hero a perfect square */
+        height: 100vh;         /* auto height from width */
         width: 100%;          /* full width */
     }
 }
@@ -2105,6 +2105,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             animation: twinkle 2s infinite alternate, moveStars 20s linear infinite;
             transition: transform 0.3s ease;
             z-index: 10;
+            /* opacity: 0.1; reduced from 1 */
         }
 
         .star:nth-child(odd) {
@@ -2116,6 +2117,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
             height: 3px;
             background: rgba(255, 255, 255, 1);
             box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+            /* opacity: 0.1; reduced from 1 */
         }
 
         .star.hover {
@@ -3351,7 +3353,7 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
         function generateStars() {
             const starsLayer = document.getElementById('starsLayer');
             const isMobile = window.innerWidth <= 768;
-            const starCount = isMobile ? 50 : 150; // Fewer stars on mobile
+            const starCount = isMobile ? 25 : 75; // Fewer stars on mobile
             
             // Clear existing stars
             starsLayer.innerHTML = '';
@@ -3409,6 +3411,9 @@ font-size: clamp(1rem, 2.5vw, 1.4rem); /* scales text across devices */
                 }
             });
         });
+
+
+        
         
         </script>
 
